@@ -1,0 +1,24 @@
+{
+  "name": "moviecharts",
+  "version": "1.0.0",
+  "description": "Simple React App for visualizing 2016 movie box office results",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grewp/moviecharts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grewp/moviecharts/issues"
+  },
+  "homepage": "https://github.com/grewp/moviecharts#readme",
+  "private": "true",
+  "dependencies": {
+    "react-d3-basic": "^1.6.11"
+  }
+}
