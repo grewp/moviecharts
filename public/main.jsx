@@ -1,79 +1,59 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var BarChart = require('react-d3-basic').BarChart;
-var mysql = require("mysql");
+var mysql = require('mysql');
+// var request = require('request');
+
+
+//setup chart config
+var width = 700,
+  height = 400,
+  title = 'Bar Chart',
+  chartSeries = [
+    {
+      field: 'gross'
+    }
+  ],
+  x = function (d) {
+    return d.title;
+  },
+  xScale = 'ordinal',
+  xLabel = 'Movie',
+  yLabel = 'Gross',
+  yTicks = [1, '$'];
 
 
 //debug: dummy data
 var data = [
-	{
-		title: "Moana",
-		gross: 2.2
-	},
-	{
-		title: "Next Movie",
-		gross: 1.0
-	},
-		{
-		title: "Thrid Movie",
-		gross: .6
-	}
-
+  {
+    title: 'Moana',
+    gross: 2.2
+  },
+  {
+    title: 'Next Movie',
+    gross: 1.0
+  },
+  {
+    title: 'Thrid Movie',
+    gross: .6
+  }
 ];
 
 
 
-//setup chart config
-  var width = 700,
-    height = 400,
-    title = "Bar Chart",
-    chartSeries = [
-      {
-        field: 'gross'
-      }
-    ],
-    x = function(d) {
-      return d.title;
-    },
-    xScale = 'ordinal',
-    xLabel = "Movie",
-    yLabel = "Gross",
-    yTicks = [1, "$"];
-
 
 // var getData = function () {
-//   //login credentials
-//   var con = mysql.createConnection({
-//     host: "localhost",
-//     user: "root",
-//     password: "mrspooky6",
-//     database: "197final"
-//   });
-
-//   //establish connection
-//   con.connect(function(err){
-//     if(err){
-//       console.log('Error connecting to Db');
-//       return;
-//     }
-//     console.log('Connection established');
-//   });
-
-//   //query data
-//   con.query('SELECT * FROM 12_12_BO',function(err,rows){
-//     if(err) throw err;
-
-//     console.log('Data received from Db:\n');
-//     console.log(rows[0].title);
-//   });
-
-//   //terminate connection
-//   con.end(function(err) {
-//   });
+//   request('/data', function (error, response, html) {
+//       if (!error && response.statusCode == 200) {
+//           console.log(response);
+//           console.log(html);
+//         };
+//       }
+//     );
 // };
 
-
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('hello')
   ReactDOM.render(
     <BarChart
       title= {title}
@@ -86,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
       xScale= {xScale}
       yTicks= {yTicks}
       yLabel = {yLabel}
-    />
+      />
     , document.getElementById('container')
   );
 });

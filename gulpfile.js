@@ -20,10 +20,11 @@ gulp.task('browserify', function () {
       console.log('Bundle updated in ' + (time / 1000) + 's.');
     });
 
-  var watcher = watchify(bundler);
+
+  // var watcher = watchify(bundler);
 
   var bundle = function () {
-    watcher
+    bundler
       .bundle()
       .on('error', function (err) {
         console.log(err.toString());
@@ -32,20 +33,12 @@ gulp.task('browserify', function () {
       .pipe(gulp.dest('./public/build/'));
   };
   bundle();
-  return watcher.on('update', function (filenames) {
-    filenames.forEach(function (filename) {
-      console.log(path.relative(__dirname, filename) + ' changed.');
-    });
-    bundle();
-  });
 });
 
 gulp.task('default', ['browserify']);
 
 var JS = [
   'public/**/*.jsx',
-  'public/actions/*.js',
-  'public/reducers/*.js',
   'public/main.jsx'
 ];
 
