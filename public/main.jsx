@@ -2,7 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var BarChart = require('react-d3-basic').BarChart;
 var mysql = require('mysql');
-// var request = require('request');
 
 
 //setup chart config
@@ -40,33 +39,34 @@ var data = [
 ];
 
 
+var getData = function (cb) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    cb(JSON.parse(this.response));
+    // if (this.readyState == 4 && this.status == 200) {
+    //  document.getElementById("demo").innerHTML = this.responseText;
+    // }
+  };
+  xhttp.open('GET', 'http://localhost:3000/data', false);
+  xhttp.send();
+};
 
-
-// var getData = function () {
-//   request('/data', function (error, response, html) {
-//       if (!error && response.statusCode == 200) {
-//           console.log(response);
-//           console.log(html);
-//         };
-//       }
-//     );
-// };
-
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('hello')
-  ReactDOM.render(
-    <BarChart
-      title= {title}
-      data= {data}
-      width= {width}
-      height= {height}
-      chartSeries = {chartSeries}
-      x= {x}
-      xLabel= {xLabel}
-      xScale= {xScale}
-      yTicks= {yTicks}
-      yLabel = {yLabel}
-      />
-    , document.getElementById('container')
-  );
+document.addEventListener('DOMContentLoaded', function () {
+  getData(function (resp) {
+    ReactDOM.render(
+      <BarChart
+        title= {title}
+        data= {resp}
+        width= {width}
+        height= {height}
+        chartSeries = {chartSeries}
+        x= {x}
+        xLabel= {xLabel}
+        xScale= {xScale}
+        yTicks= {yTicks}
+        yLabel = {yLabel}
+        />
+      , document.getElementById('container')
+    );
+  });
 });
