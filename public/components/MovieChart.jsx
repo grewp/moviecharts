@@ -4,12 +4,6 @@ var PieChart = require('react-d3-basic').PieChart;
 var $ = require('jquery');
 
 
-//handle later
-var mask;
-var data;
-var resp;
-
-
 var MovieChart = React.createClass({
   getInitialState: function () {
     return {
