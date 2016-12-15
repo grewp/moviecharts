@@ -1,6 +1,7 @@
 var React = require('react');
 var BarChart = require('react-d3-basic').BarChart;
 var PieChart = require('react-d3-basic').PieChart;
+var $ = require('jquery');
 
 
 var FullApp = React.createClass({
@@ -21,10 +22,16 @@ var FullApp = React.createClass({
 		}
 	],
 	x: function (d) {
-	return d.title;
+		return d.title.slice(0, 9);
+		// console.log(d.title);
+		// if (d.titles.length > 10) {
+		// 	return d.titles.slice(0, 9);
+		// } else {
+		// 	return d.titles;
+		// }
 	},
 	xScale: 'ordinal',
-	xLabel: 'Movie',
+	xLabel: '',
 	yLabel: 'Gross',
 	yTicks: [1, '$'],
 
@@ -52,12 +59,27 @@ var FullApp = React.createClass({
 			return mask[resp.indexOf(el)]});
 	},
 
+	componentDidMount: function () {
+		//react-d3 post processing
+		$(".react-d3-core__axis__xAxis.axis.x").find("text").attr("transform", "rotate(-75)");
+		$(".react-d3-core__axis__xAxis.axis.x").attr("font-size", "7");
+		$(".react-d3-core__axis__xAxis.axis.x").attr("transform", "translate(-20,20)");
+		$(".react-d3-core__axis__xAxis.axis.x").find("line").attr("display", "none");
+	},
+
+	componentDidUpdate: function () {
+		//react-d3 post processing
+			//necessary for edge case of x axis refresh
+		$(".react-d3-core__axis__xAxis.axis.x").find("text").attr("transform", "rotate(-75)");
+		$(".react-d3-core__axis__xAxis.axis.x").attr("font-size", "7");
+		$(".react-d3-core__axis__xAxis.axis.x").attr("transform", "translate(-20,20)");
+		$(".react-d3-core__axis__xAxis.axis.x").find("line").attr("display", "none");
+	},
+
+
 	onClicked: function (i) {
 		mask[i]=!mask[i]; //change corresponding map value
 		this.setState({mask:mask});
-		console.log(this.state)
-		
-		//change color
 	},
 
 	render: function () {
