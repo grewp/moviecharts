@@ -1,12 +1,12 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var FullApp = require('./components/FullApp.jsx');
+var MovieChart = require('./components/MovieChart.jsx');
 
-var fullApp = <FullApp/>;
+var movieChart = <MovieChart/>;
 
 document.addEventListener('DOMContentLoaded', function () {
-    ReactDOM.render(
-      fullApp
-      , document.getElementById('container')
-    );
+  ReactDOM.render(
+    movieChart
+    , document.getElementById('container')
+  );
 });
