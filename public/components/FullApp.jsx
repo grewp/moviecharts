@@ -1,5 +1,6 @@
 var React = require('react');
 var BarChart = require('react-d3-basic').BarChart;
+var PieChart = require('react-d3-basic').PieChart;
 
 
 var FullApp = React.createClass({
@@ -54,13 +55,16 @@ var FullApp = React.createClass({
 	onClicked: function (i) {
 		mask[i]=!mask[i]; //change corresponding map value
 		this.setState({mask:mask});
-		// this.css('color' = on) //change color
+		console.log(this.state)
+		
+		//change color
 	},
 
 	render: function () {
 		var buttons = []
 		for (var i = 0; i < resp.length; i++) {
-			buttons.push(<button key={i} onClick={this.onClicked.bind(this, i)}>{resp[i].title}</button>);
+			buttons.push(<button key={i} onClick={this.onClicked.bind(this, i)} 
+				className={this.state.mask[i] ? 'active' : 'inactive'}>{resp[i].title}</button>);
 		};
 
 		return (
